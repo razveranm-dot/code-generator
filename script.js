@@ -1,5 +1,5 @@
 // Replace with your actual Web App URL from Apps Script deployment
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxFjJ1aqVle_FgkjDi037WSLPI2nFfwLphHNaUjMarrBwznv9Ll8pEJfCOZLUSp1gZVag/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxvAIbHc4cHv6geZADZZZngoO1unRJ4Hmwm882DASWg4hss7fmYfhPm20BbOrQax4Vh8w/exec";
 
 let currentData = []; // store last search results
 
