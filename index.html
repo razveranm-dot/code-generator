@@ -1,67 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
   <title>Code Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Code Generator</h1>
 
-  <!-- PV Section -->
-  <div>
-    <h2>Purchase Voucher (PV)</h2>
-    <input type="text" id="pvName" placeholder="Enter Name here">
-    <select id="pvClient">
-      <option value="RSSB">RSSB</option>
-      <option value="CLIENT">CLIENT</option>
-    </select>
-    <button onclick="generateCode('PV')">Generate PV</button>
-    <p id="pvResult"></p>
-  </div>
+  <!-- Client code input -->
+  <label for="clientCode">Client Code:</label>
+  <input type="text" id="clientCode" placeholder="Default = RSS">
 
-  <!-- INV Section -->
-  <div>
-    <h2>Invoice (INV)</h2>
-    <input type="text" id="invName" placeholder="Enter Name here">
-    <button onclick="generateCode('INV')">Generate INV</button>
-    <p id="invResult"></p>
-  </div>
+  <!-- Name input -->
+  <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter your name">
 
-  <!-- QT Section -->
-  <div>
-    <h2>Quotation (QT)</h2>
-    <input type="text" id="qtName" placeholder="Enter Name here">
-    <select id="qtClient">
-      <option value="RSSB">RSSB</option>
-      <option value="CLIENT">CLIENT</option>
-    </select>
-    <button onclick="generateCode('QT')">Generate QT</button>
-    <p id="qtResult"></p>
-  </div>
+  <!-- Buttons -->
+  <button onclick="generateCode('PV')">Generate PV</button>
+  <button onclick="generateCode('INV')">Generate INV</button>
+  <button onclick="generateCode('QT')">Generate QT</button>
+  <button onclick="generateCode('PO')">Generate PO</button>
 
-  <!-- Dashboard -->
-  <h2>Dashboard</h2>
-  <select id="filterType">
-    <option value="">All Types</option>
+  <div id="output"></div>
+
+  <h2>Last 10 Codes</h2>
+
+  <!-- Filter controls -->
+  <label for="filterType">Filter by Type:</label>
+  <select id="filterType" onchange="loadHistory()">
+    <option value="">All</option>
     <option value="PV">PV</option>
     <option value="INV">INV</option>
     <option value="QT">QT</option>
+    <option value="PO">PO</option>
   </select>
-  <select id="filterClient">
-    <option value="">All Clients</option>
-    <option value="RSSB">RSSB</option>
-    <option value="CLIENT">CLIENT</option>
-  </select>
-  <input type="date" id="filterDate">
-  <button onclick="searchCodes()">Search</button>
-  <button onclick="exportCSV()">Export CSV</button>
 
-  <table border="1" id="resultsTable">
-    <thead>
-      <tr><th>Code</th><th>Name</th><th>Date</th></tr>
-    </thead>
-    <tbody></tbody>
+  <label for="filterClient">Filter by Client Code:</label>
+  <input type="text" id="filterClient" placeholder="Enter client code">
+
+  <button onclick="loadHistory()">Apply Filter</button>
+  <button onclick="downloadCSV()">Download CSV</button>
+
+  <table id="historyTable">
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Date</th>
+    </tr>
   </table>
 
   <script src="script.js"></script>
