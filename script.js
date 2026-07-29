@@ -1,63 +1,78 @@
-console.log("✅ script.js loaded too"); //test if relact - load F12
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxKVKcfy0E92Ib1XMrKkN40gAyIa9VDUpJvlWynD5_NmlMdfglTuN9Wu9-kx2_H4ub7fA/exec"; // replace with your actual Google Apps Script Web App URL
+console.log("✅ script.js loaded");
+
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyme0as7yVx2L_gyd5dEcmS0YgZspGp66ORza2aqJCExMaYX__Q2lBVZPZkd5faqUZ_/exec"; // paste your /exec URL here
 
 async function generateCode(type) {
-  let name = "";
-  let clientCode = "";
+  let clientCode = document.getElementById("clientCode").value.trim();
+  if (!clientCode) clientCode = "RSS";
 
-  if (type === "PV") {
-    name = document.getElementById("pvName").value;
-    clientCode = document.getElementById("pvClient").value;
-  } else if (type === "INV") {
-    name = document.getElementById("invName").value;
-  } else if (type === "QT") {
-    name = document.getElementById("qtName").value;
-    clientCode = document.getElementById("qtClient").value;
+  let name = document.getElementById("name").value.trim();
+
+  try {
+    const response = await fetch(WEB_APP_URL, {
+      method: "POST",
+      body: JSON.stringify({ type: type, clientCode: clientCode, name: name }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const data = await response.json();
+    document.getElementById("output").innerText = data.code || JSON.stringify(data);
+
+    loadHistory(); // refresh table
+  } catch (error) {
+    console.error("Error:", error);
+    document.getElementById("output").innerText = "❌ Failed to generate code";
+  }
+}
+
+async function loadHistory() {
+  try {
+    const type = document.getElementById("filterType").value;
+    const client = document.getElementById("filterClient").value.trim();
+
+    let url = WEB_APP_URL;
+    if (type || client) {
+      url += "?";
+      if (type) url += "type=" + encodeURIComponent(type) + "&";
+      if (client) url += "client=" + encodeURIComponent(client);
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const table = document.getElementById("historyTable");
+    table.innerHTML = "<tr><th>Code</th><th>Name</th><th>Date</th></tr>";
+
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${row.code}</td><td>${row.name}</td><td>${row.date}</td>`;
+      table.appendChild(tr);
+    });
+
+    window.historyData = data; // save for CSV
+  } catch (error) {
+    console.error("Error loading history:", error);
+  }
+}
+
+function downloadCSV() {
+  if (!window.historyData || window.historyData.length === 0) {
+    alert("No data to export");
+    return;
   }
 
-  const response = await fetch(WEB_APP_URL, {
-    method: "POST",
-    body: JSON.stringify({type, name, clientCode}),
-    headers: {"Content-Type": "application/json"}
+  let csv = "Code,Name,Date\n";
+  window.historyData.forEach(row => {
+    csv += `${row.code},${row.name},${row.date}\n`;
   });
 
-  const result = await response.json();
-  document.getElementById(type.toLowerCase() + "Result").innerText =
-    "✅ " + type + " Code Generated: " + result.code;
-}
-
-async function searchCodes() {
-  const type = document.getElementById("filterType").value;
-  const clientCode = document.getElementById("filterClient").value;
-  const date = document.getElementById("filterDate").value;
-
-  const url = WEB_APP_URL + "?type=" + type + "&clientCode=" + clientCode + "&date=" + date;
-  const response = await fetch(url);
-  const data = await response.json();
-
-  const tbody = document.getElementById("resultsTable").querySelector("tbody");
-  tbody.innerHTML = "";
-  data.forEach(row => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${row.code}</td><td>${row.name}</td><td>${row.date}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-
-function exportCSV() {
-  const rows = document.querySelectorAll("#resultsTable tr");
-  let csv = [];
-  rows.forEach(row => {
-    const cols = row.querySelectorAll("td, th");
-    const rowData = [];
-    cols.forEach(col => rowData.push(col.innerText));
-    csv.push(rowData.join(","));
-  });
-
-  const blob = new Blob([csv.join("\n")], { type: "text/csv" });
-  const url = window.URL.createObjectURL(blob);
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.setAttribute("href", url);
-  a.setAttribute("download", "codes.csv");
+  a.href = url;
+  a.download = "codes_history.csv";
   a.click();
+  URL.revokeObjectURL(url);
 }
+
+window.onload = loadHistory;
