@@ -1,4 +1,4 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxSH_XHOTk99uh1i7-FM7zCVZzjMCumvwXPitJmLnjyeF6k0uItFP8C5xV1X-u405HCAg/exec"; // replace with your actual Google Apps Script Web App URL
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzbWN92BbpCxsW5XRamHYxPLyjk_nOQoVgIezWWkRTAcZFwwO7yrSWmGxI3PhjPmRg_0g/exec"; // replace with your actual Google Apps Script Web App URL
 
 async function generateCode(type) {
   let name = "";
