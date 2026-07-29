@@ -1,0 +1,4 @@
+body { font-family: Arial; margin: 30px; }
+.box { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; }
+button { padding: 10px; margin-top: 10px; }
+.feedback { margin-top: 10px; font-weight: bold; color: green; }
