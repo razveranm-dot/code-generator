@@ -1,5 +1,5 @@
-console.log("✅ script.js loaded");
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzbWN92BbpCxsW5XRamHYxPLyjk_nOQoVgIezWWkRTAcZFwwO7yrSWmGxI3PhjPmRg_0g/exec"; // replace with your actual Google Apps Script Web App URL
+console.log("✅ script.js loaded too"); //test if relact - load F12
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxKVKcfy0E92Ib1XMrKkN40gAyIa9VDUpJvlWynD5_NmlMdfglTuN9Wu9-kx2_H4ub7fA/exec"; // replace with your actual Google Apps Script Web App URL
 
 async function generateCode(type) {
   let name = "";
