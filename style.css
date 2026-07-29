@@ -1,4 +1,24 @@
-body { font-family: Arial; margin: 30px; }
-.box { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; }
-button { padding: 10px; margin-top: 10px; }
-.feedback { margin-top: 10px; font-weight: bold; color: green; }
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+input, select, button {
+  margin: 5px;
+  padding: 5px;
+}
+
+table {
+  margin-top: 15px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}

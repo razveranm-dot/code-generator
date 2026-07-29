@@ -1,70 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Code Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Generate Codes</h2>
+  <h1>Code Generator</h1>
 
-  <div class="box">
-    <h3>Purchase Voucher (PV)</h3>
-    <input type="text" id="pvName" placeholder="Enter name">
+  <!-- PV Section -->
+  <div>
+    <h2>Purchase Voucher (PV)</h2>
+    <input type="text" id="pvName" placeholder="Enter Name here">
     <select id="pvClient">
-      <option value="RSSB">DEFAULT - RSSB</option>
-      <option value="PETRONAS">PETRONAS</option>
+      <option value="RSSB">RSSB</option>
+      <option value="CLIENT">CLIENT</option>
     </select>
     <button onclick="generateCode('PV')">Generate PV</button>
-    <p id="pvResult" class="feedback"></p>
+    <p id="pvResult"></p>
   </div>
 
-  <div class="box">
-    <h3>Invoice (INV)</h3>
-    <input type="text" id="invName" placeholder="Enter name">
+  <!-- INV Section -->
+  <div>
+    <h2>Invoice (INV)</h2>
+    <input type="text" id="invName" placeholder="Enter Name here">
     <button onclick="generateCode('INV')">Generate INV</button>
-    <p id="invResult" class="feedback"></p>
+    <p id="invResult"></p>
   </div>
 
-  <div class="box">
-    <h3>Quotation (QT)</h3>
-    <input type="text" id="qtName" placeholder="Enter name">
+  <!-- QT Section -->
+  <div>
+    <h2>Quotation (QT)</h2>
+    <input type="text" id="qtName" placeholder="Enter Name here">
     <select id="qtClient">
-      <option value="RSSB">DEFAULT - RSSB</option>
-      <option value="PETRONAS">PETRONAS</option>
+      <option value="RSSB">RSSB</option>
+      <option value="CLIENT">CLIENT</option>
     </select>
     <button onclick="generateCode('QT')">Generate QT</button>
-    <p id="qtResult" class="feedback"></p>
+    <p id="qtResult"></p>
   </div>
 
-  <div class="box">
-    <h3>Dashboard</h3>
-    <label>Type:</label>
-    <select id="dashType">
-      <option value="PV">PV</option>
-      <option value="INV">INV</option>
-      <option value="QT">QT</option>
-    </select>
-    
-    <label>Client Code:</label>
-    <select id="dashClient">
-      <option value="">All</option>
-      <option value="RSSB">RSSB</option>
-      <option value="PETRONAS">PETRONAS</option>
-    </select>
-    
-    <label>Date:</label>
-    <input type="date" id="dashDate">
-    
-    <button onclick="loadDashboard()">Search</button>
-    <button onclick="exportCSV()">Export CSV</button>
-    
-    <table border="1" id="dashboardTable" style="margin-top:10px; width:100%;">
-      <thead>
-        <tr><th>Code</th><th>Name</th><th>Date</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+  <!-- Dashboard -->
+  <h2>Dashboard</h2>
+  <select id="filterType">
+    <option value="">All Types</option>
+    <option value="PV">PV</option>
+    <option value="INV">INV</option>
+    <option value="QT">QT</option>
+  </select>
+  <select id="filterClient">
+    <option value="">All Clients</option>
+    <option value="RSSB">RSSB</option>
+    <option value="CLIENT">CLIENT</option>
+  </select>
+  <input type="date" id="filterDate">
+  <button onclick="searchCodes()">Search</button>
+  <button onclick="exportCSV()">Export CSV</button>
+
+  <table border="1" id="resultsTable">
+    <thead>
+      <tr><th>Code</th><th>Name</th><th>Date</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
   <script src="script.js"></script>
 </body>
