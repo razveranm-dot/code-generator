@@ -1,6 +1,6 @@
 console.log("✅ script.js loaded");
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwcEug4GMj6JfC-PNrzNnry7yZw3sjFOfONK6cwCVGpdBXsH8pBvbH4SpyMGfESREslVA/exec"; // paste your /exec URL here
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzUVV_44MfJs4vbOzNqQPsIP99xx3P-T2B2VOuLGqQlGvZ8r-ukOJFyxYiKfRtHfflDZg/exec"; // paste your /exec URL here
 
 async function generateCode(type) {
   // Get client code (default RSS if empty)
