@@ -7,15 +7,12 @@
 <body>
   <h1>Code Generator</h1>
 
-  <!-- Client code input -->
   <label for="clientCode">Client Code:</label>
   <input type="text" id="clientCode" placeholder="Default = RSS">
 
-  <!-- Name input -->
   <label for="name">Name:</label>
   <input type="text" id="name" placeholder="Enter your name">
 
-  <!-- Buttons -->
   <button onclick="generateCode('PV')">Generate PV</button>
   <button onclick="generateCode('INV')">Generate INV</button>
   <button onclick="generateCode('QT')">Generate QT</button>
@@ -25,7 +22,6 @@
 
   <h2>Last 10 Codes</h2>
 
-  <!-- Filter controls -->
   <label for="filterType">Filter by Type:</label>
   <select id="filterType" onchange="loadHistory()">
     <option value="">All</option>
