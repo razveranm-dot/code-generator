@@ -20,31 +20,6 @@
 
   <div id="output"></div>
 
-  <h2>Last 10 Codes</h2>
-
-  <label for="filterType">Filter by Type:</label>
-  <select id="filterType" onchange="loadHistory()">
-    <option value="">All</option>
-    <option value="PV">PV</option>
-    <option value="INV">INV</option>
-    <option value="QT">QT</option>
-    <option value="PO">PO</option>
-  </select>
-
-  <label for="filterClient">Filter by Client Code:</label>
-  <input type="text" id="filterClient" placeholder="Enter client code">
-
-  <button onclick="loadHistory()">Apply Filter</button>
-  <button onclick="downloadCSV()">Download CSV</button>
-
-  <table id="historyTable">
-    <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Date</th>
-    </tr>
-  </table>
-
   <script src="script.js"></script>
 </body>
 </html>
