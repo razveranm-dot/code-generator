@@ -10,17 +10,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-h2 {
-  margin-top: 40px;
-  color: #34495e;
-}
-
 label {
   margin-right: 10px;
   font-weight: bold;
 }
 
-input, select, button {
+input, button {
   margin: 5px 10px 15px 0;
   padding: 8px 12px;
   border: 1px solid #ccc;
@@ -34,4 +29,13 @@ button {
   cursor: pointer;
 }
 
-button
+button:hover {
+  background-color: #2980b9;
+}
+
+#output {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #27ae60;
+}
