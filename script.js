@@ -1,6 +1,6 @@
 console.log("✅ script.js loaded");
 
-const WEB_APP_URL = "YOUR_WEB_APP_URL"; // paste your /exec URL here
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHqXMRnVhVCLF1SRSeEygtKIj-TJT2pCgU-QdFsHvpB53KnDemDrmN8Lz1EeaLYw9Vjw/exec"; // paste your /exec URL here
 
 async function generateCode(type) {
   // Get client code (default RSS if empty)
