@@ -27,3 +27,11 @@ input, select, button {
   border-radius: 4px;
 }
 
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button
